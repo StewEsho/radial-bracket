@@ -1,0 +1,9 @@
+.entry{
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 1rem;
+    border: solid 1px black;
+    background: lightgray;
+    min-height: 100px;
+}
