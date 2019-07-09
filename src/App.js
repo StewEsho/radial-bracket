@@ -10,13 +10,16 @@ class App extends React.Component {
         name: 'team 1',
         color: '#00ff00',
         logo: 'http://placehold.it/64',
-        seed: 1
+        seed: 1,
+        id: 0,
       }, {
         name: 'team 2',
-        color: '#ff0000',
+        color: '#FF5588',
         logo: 'http://placehold.it/64',
-        seed: 2
-      }]
+        seed: 2,
+        id: 1,
+      }],
+      lastTeamID: 1,
     };
     
     this.editTeam = {
@@ -25,33 +28,63 @@ class App extends React.Component {
       editLogo: this.editLogo,
       editSeed: this.editSeed
     }
+
+    this.defaultColors = ['#ff9ff3', '#feca57', '#54a0ff', '#48dbfb', '#d63031', '#1dd1a1','#009432', '#00d2d3' ,'#c8d6e5', '#222f3e', '#0a3d62', '#b71540','#6c5ce7', '#ff6b6b'];
   }
 
   addTeam = (team) => {
     team['name'] = team['name'] || 'Team';
-    team['color'] = team['color'] || 'ffffff';
-    team['logo'] = team['logo'] || 'http://placehold.it/32'
-    team.seed = team.seed || this.state.teams.length + 1
-
-    let teamsCopy = [...this.state.teams];
-    teamsCopy.push(team);
-    this.setState({teams: teamsCopy});
+    team['color'] = team['color'] || this.defaultColors[this.state.teams.length % this.defaultColors.length];
+    team['logo'] = team['logo'] || 'http://placehold.it/32';
+    team.seed = team.seed || this.state.teams.length + 1;
+    team.id = ++this.state.lastTeamID;
+    let teams = [...this.state.teams];
+    teams.push(team);
+    this.setState({ teams: teams, lastTeamID: team.id});
   }
 
-  removeTeamByName = (name) => {
-    let matchingTeam = this.state.teams.filter(team => team.name === name);
-    if (matchingTeam.length > 0){
-      let index = this.state.teams.indexOf(matchingTeam)[0];
-      let teamsCopy = [...this.state.teams];
-      teamsCopy.splice(index, 1);
-      this.setState({ teams: teamsCopy });
+  removeTeamByID = (id) => {
+    let teams = [...this.state.teams];
+    let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+    if (matchingTeam){
+      let index = this.state.teams.indexOf(matchingTeam);
+      teams.splice(index, 1);
+      this.setState({ teams: teams });
     }
   }
 
-  editName = (newName, index) => {
+  editName = (newName, id) => {
     let teams = [...this.state.teams];
-    teams[index].name = newName;
+    let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+    if (matchingTeam){
+      let index = this.state.teams.indexOf(matchingTeam);
+      teams[index].name = newName;
+    }
     this.setState({teams});
+  }
+
+  editColor = (newColor, id) => {
+    let teams = [...this.state.teams];
+    let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+    if (matchingTeam){
+      let index = this.state.teams.indexOf(matchingTeam);
+      teams[index].color = newColor;
+    }
+    this.setState({teams});
+  }
+
+  editLogo = (newLogo, id) => {
+    
+  }
+
+  editSeed = (newSeed, id) => {
+    let teams = [...this.state.teams];
+    let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+    if (matchingTeam) {
+      let index = this.state.teams.indexOf(matchingTeam);
+      teams[index].seed = newSeed;
+    }
+    this.setState({ teams });
   }
 
   render(){
@@ -60,7 +93,7 @@ class App extends React.Component {
         <div className="row">
           <div className="col-6" style={{ backgroundColor: 'green' }}>
             <Seeding teams={this.state.teams} 
-             editTeam={this.editTeam} />
+              editTeam={this.editTeam} addTeam={this.addTeam} removeTeam={this.removeTeamByID}/>
           </div>
           <div className="col-6" style={{ backgroundColor: 'blue' }}>
 

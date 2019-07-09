@@ -12,7 +12,7 @@ class Seeding extends React.Component {
     render(){
         return (
             <div className='seeding'>
-                {this.props.teams.map(team => <TeamEntry editTeam={this.props.editTeam} team={team} key={team.index} /> )}
+                {this.props.teams.map(team => <TeamEntry editTeam={this.props.editTeam} team={team} key={team.index} removeTeam={this.props.removeTeam}/> )}
                 <button onClick={() => this.props.addTeam({
                     name: 'foo bars',
                 })}>Add</button>

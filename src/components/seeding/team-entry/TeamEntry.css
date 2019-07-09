@@ -6,4 +6,20 @@
     border: solid 1px black;
     background: lightgray;
     min-height: 100px;
+    position: relative;
+}
+
+.entry .button.delete{
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 18px;
+    background-color: red;
+    padding: 5px 12px 5px 12px;
+    border-radius: 4px;
+    color: white;
+}
+
+.entry .button.delete:hover{
+    font-weight: bold;
 }
