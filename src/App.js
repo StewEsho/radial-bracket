@@ -1,6 +1,7 @@
 import React from 'react';
 import Seeding from './components/seeding/seeding.js';
 import './App.css';
+import imageIcon from './icons/round-add_photo_alternate-24px.svg';
 
 class App extends React.Component {
   constructor(props){
@@ -9,13 +10,15 @@ class App extends React.Component {
       teams: [{
         name: 'team 1',
         color: '#00ff00',
-        logo: 'http://placehold.it/64',
+        logo: imageIcon,
+        file: null,
         seed: 1,
         id: 0,
       }, {
         name: 'team 2',
         color: '#FF5588',
-        logo: 'http://placehold.it/64',
+        logo: imageIcon,
+        file: null,
         seed: 2,
         id: 1,
       }],
@@ -35,7 +38,7 @@ class App extends React.Component {
   addTeam = (team) => {
     team['name'] = team['name'] || 'Team';
     team['color'] = team['color'] || this.defaultColors[this.state.teams.length % this.defaultColors.length];
-    team['logo'] = team['logo'] || 'http://placehold.it/32';
+    team['logo'] = team['logo'] || './icons/round-add_photo_alternate-24px.svg';
     team.seed = team.seed || this.state.teams.length + 1;
     team.id = ++this.state.lastTeamID;
     let teams = [...this.state.teams];
@@ -73,8 +76,17 @@ class App extends React.Component {
     this.setState({teams});
   }
 
-  editLogo = (newLogo, id) => {
-    
+  editLogo = (e, id) => {
+    let file = e.target.files[0];
+    let url = URL.createObjectURL(file);
+    let teams = [...this.state.teams];
+    let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+    if(matchingTeam){
+      let index = this.state.teams.indexOf(matchingTeam);
+      teams[index].logo = url;
+      teams[index].file = file;
+    }
+    this.setState({teams});
   }
 
   editSeed = (newSeed, id) => {

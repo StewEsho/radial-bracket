@@ -25,6 +25,10 @@ class TeamEntry extends React.Component{
                     </div>
                 </div>
                 <div className='right-side'>
+                    <label>
+                        <input type='file' className='input--logo' accept="image/png, image/jpeg, image/jpg, image/svg+xml" onChange={(e) => this.props.editTeam.editLogo(e, this.props.team.id)} />
+                        <img className='logo--preview' src={this.props.team.logo} />
+                    </label>
                 </div>
             </div>
         )

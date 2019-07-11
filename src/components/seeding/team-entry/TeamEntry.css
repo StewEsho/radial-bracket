@@ -7,6 +7,10 @@
     background: lightgray;
     min-height: 100px;
     position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .entry .button.delete{
@@ -22,4 +26,17 @@
 
 .entry .button.delete:hover{
     font-weight: bold;
+}
+
+.entry .input--logo{
+    display: none;
+}
+
+.entry .logo--preview{
+    width: 75px;
+    max-height: 90px;
+}
+
+.entry .logo--preview:hover{
+    cursor: pointer;
 }
