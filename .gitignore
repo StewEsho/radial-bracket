@@ -6,15 +6,15 @@
 
 
 # dependencies
-/node_modules
-/.pnp
+*/node_modules
+*/.pnp
 .pnp.js
 
 # testing
-/coverage
+*/coverage
 
 # production
-/build
+*/build
 
 # misc
 .DS_Store
@@ -31,13 +31,13 @@ yarn-error.log*
 # FLASK / PYTHON
 #################
 ## Flask ###
-instance/*
-!instance/.gitignore
-.webassets-cache
+*instance/*
+*!instance/.gitignore
+*.webassets-cache
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
-__pycache__/
+*__pycache__/
 *.py[cod]
 *$py.class
 
@@ -46,13 +46,13 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
+*build/
+*develop-eggs/
+*dist/
+*downloads/
+*eggs/
+*.eggs/
+*lib/
 lib64/
 parts/
 sdist/
