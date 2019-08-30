@@ -1,5 +1,5 @@
 import React from 'react';
-import Seeding from './components/seeding/Seeding.js';
+import Editor from './components/Editor.js';
 import './sass/style.scss';
 import imageIcon from './icons/round-add_photo_alternate-24px.svg';
 
@@ -94,8 +94,12 @@ class App extends React.Component {
       <div className="App">
         <div className="row">
           <div className="col-6">
-            <Seeding teams={this.state.teams} 
-              editTeam={this.editTeam} addTeam={this.addTeam} removeTeam={this.removeTeamByID} toggleStage={this.toggleStage} />
+            <Editor 
+              teams={this.state.teams} 
+              seedingFunctions={ {editTeam: this.editTeam, addTeam: this.addTeam, removeTeam: this.removeTeamByID} } 
+              toggleStage={this.toggleStage} 
+              isSeeding={this.state.isSeeding}
+            />
           </div>
           <div className="col-6">
 

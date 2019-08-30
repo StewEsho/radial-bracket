@@ -12,12 +12,14 @@ class Seeding extends React.Component {
         return (
             <ul className='seeding'>
 
-                <button onClick={() => this.props.addTeam()}>Add</button>
-                <button onClick={() => this.props.toggleStage()}>Done</button>  { /* TODO: button should enter next stage */}
+                <button onClick={() => this.props.func.addTeam()}>Add</button><br />
 
                 {this.props.teams.map(team => 
-                    <TeamEntry editTeam={this.props.editTeam} team={team} key={team.id} removeTeam={this.props.removeTeam}/> 
+                    <TeamEntry editTeam={this.props.func.editTeam} team={team} key={team.id} removeTeam={this.props.func.removeTeam}/> 
                 )}
+
+
+                <button onClick={this.props.toggleStage}>Done</button>
             </ul>
         );
     }
