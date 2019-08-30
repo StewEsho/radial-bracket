@@ -8,7 +8,10 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      teams: [],
+      bracket: {
+        teams: [],
+        matchups: []
+      },
       lastTeamID: 0,
       isSeeding: true
     };
@@ -18,47 +21,53 @@ class App extends React.Component {
       oldState.isSeeding = !oldState.isSeeding;
       this.setState(oldState);
     }
+
+    this.updateTeams = (teams) => {
+      var stateCopy = this.state;
+      stateCopy.bracket.teams = [...teams];
+      this.setState(stateCopy);
+    }
     
     // suite of functions used to edit attributes of a team (to be passed to child components)
     this.editTeam = {
       editName: (newName, id) => {
-        let teams = [...this.state.teams];
-        let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+        let teams = [...this.state.bracket.teams];
+        let matchingTeam = this.state.bracket.teams.filter(team => team.id === id)[0];
         if (matchingTeam){
-          let index = this.state.teams.indexOf(matchingTeam);
+          let index = this.state.bracket.teams.indexOf(matchingTeam);
           teams[index].name = newName;
         }
-        this.setState({teams});
+        this.updateTeams(teams);
       },
       editColor: (newColor, id) => {
-        let teams = [...this.state.teams];
-        let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+        let teams = [...this.state.bracket.teams];
+        let matchingTeam = this.state.bracket.teams.filter(team => team.id === id)[0];
         if (matchingTeam){
-          let index = this.state.teams.indexOf(matchingTeam);
+          let index = this.state.bracket.teams.indexOf(matchingTeam);
           teams[index].color = newColor;
         }
-        this.setState({teams});
+        this.updateTeams(teams);
       },
       editLogo: (e, id) => {
         let file = e.target.files[0];
         let url = URL.createObjectURL(file);
-        let teams = [...this.state.teams];
-        let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+        let teams = [...this.state.bracket.teams];
+        let matchingTeam = this.state.bracket.teams.filter(team => team.id === id)[0];
         if(matchingTeam){
-          let index = this.state.teams.indexOf(matchingTeam);
+          let index = this.state.bracket.teams.indexOf(matchingTeam);
           teams[index].logo = url;
           teams[index].file = file;
         }
-        this.setState({teams});
+        this.updateTeams(teams);
       },
       editSeed: (newSeed, id) => {
-        let teams = [...this.state.teams];
-        let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+        let teams = [...this.state.bracket.teams];
+        let matchingTeam = this.state.bracket.teams.filter(team => team.id === id)[0];
         if (matchingTeam) {
-          let index = this.state.teams.indexOf(matchingTeam);
+          let index = this.state.bracket.teams.indexOf(matchingTeam);
           teams[index].seed = newSeed;
         }
-        this.setState({ teams });
+        this.updateTeams(teams);
       }
     }
 
@@ -68,23 +77,25 @@ class App extends React.Component {
   addTeam = () => {
     var team = {};
     team['name'] = team['name'] || '';
-    team['color'] = team['color'] || this.defaultColors[this.state.teams.length % this.defaultColors.length];
+    team['color'] = team['color'] || this.defaultColors[this.state.lastTeamID % this.defaultColors.length];
     team['logo'] = team['logo'] || imageIcon;
 
-    team.seed = team.seed || this.state.teams.length + 1;
+    team.seed = team.seed || this.state.bracket.teams.length + 1;
     team.id = ++this.state.lastTeamID;
-    let teams = [...this.state.teams];
+    let teams = [...this.state.bracket.teams];
     teams.push(team);
-    this.setState({ teams: teams, lastTeamID: team.id});
+
+    this.updateTeams(teams);
+    this.setState({ lastTeamID: team.id});
   }
 
   removeTeamByID = (id) => {
-    let teams = [...this.state.teams];
-    let matchingTeam = this.state.teams.filter(team => team.id === id)[0];
+    let teams = [...this.state.bracket.teams];
+    let matchingTeam = this.state.bracket.teams.filter(team => team.id === id)[0];
     if (matchingTeam){
-      let index = this.state.teams.indexOf(matchingTeam);
+      let index = this.state.bracket.teams.indexOf(matchingTeam);
       teams.splice(index, 1);
-      this.setState({ teams: teams });
+      this.updateTeams(teams);
     }
   }
 
@@ -95,7 +106,7 @@ class App extends React.Component {
         <div className="row">
           <div className="col-6">
             <Editor 
-              teams={this.state.teams} 
+              teams={this.state.bracket.teams} 
               seedingFunctions={ {editTeam: this.editTeam, addTeam: this.addTeam, removeTeam: this.removeTeamByID} } 
               toggleStage={this.toggleStage} 
               isSeeding={this.state.isSeeding}
