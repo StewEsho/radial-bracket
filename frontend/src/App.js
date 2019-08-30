@@ -1,15 +1,23 @@
 import React from 'react';
-import Seeding from './components/seeding/seeding.js';
+import Seeding from './components/seeding/Seeding.js';
 import './sass/style.scss';
 import imageIcon from './icons/round-add_photo_alternate-24px.svg';
 
 class App extends React.Component {
   constructor(props){
     super(props);
+
     this.state = {
       teams: [],
       lastTeamID: 0,
+      isSeeding: true
     };
+
+    this.toggleStage = () => {
+      var oldState = this.state;
+      oldState.isSeeding = !oldState.isSeeding;
+      this.setState(oldState);
+    }
     
     // suite of functions used to edit attributes of a team (to be passed to child components)
     this.editTeam = {
@@ -87,7 +95,7 @@ class App extends React.Component {
         <div className="row">
           <div className="col-6">
             <Seeding teams={this.state.teams} 
-              editTeam={this.editTeam} addTeam={this.addTeam} removeTeam={this.removeTeamByID}/>
+              editTeam={this.editTeam} addTeam={this.addTeam} removeTeam={this.removeTeamByID} toggleStage={this.toggleStage} />
           </div>
           <div className="col-6">
 
