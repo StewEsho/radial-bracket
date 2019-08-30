@@ -19,15 +19,16 @@ class TeamEntry extends React.Component{
                     <label htmlFor='seed'>Seed: {this.props.team.seed} 
                         {/* <input name='seed' type='number' min='1' step='1' value={this.props.team.seed} onChange={(e) => this.props.editTeam.editSeed(e.target.value, this.props.team.id)} /> */}
                     </label>
-                    <div className="button delete" onClick={(e) => this.props.removeTeam(this.props.team.id)}>
-                        X
-                    </div>
+                    <label>ID: {this.props.team.id} </label>
                 </div>
                 <div className='right-side'>
                     <label>
                         <input type='file' className='input--logo' accept="image/png, image/jpeg, image/jpg, image/svg+xml" onChange={(e) => this.props.editTeam.editLogo(e, this.props.team.id)} />
                         <img className='logo--preview' src={this.props.team.logo} />
                     </label>
+                    <div className="button delete" onClick={(e) => this.props.removeTeam(this.props.team.id)}>
+                        X
+                    </div>
                 </div>
             </li>
         )
