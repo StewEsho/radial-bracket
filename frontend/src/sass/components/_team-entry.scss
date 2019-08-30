@@ -1,0 +1,42 @@
+.entry{
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 1rem;
+    border: solid 1px black;
+    background: lightgray;
+    min-height: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.entry .button.delete{
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 18px;
+    background-color: red;
+    padding: 5px 12px 5px 12px;
+    border-radius: 4px;
+    color: white;
+}
+
+.entry .button.delete:hover{
+    font-weight: bold;
+}
+
+.entry .input--logo{
+    display: none;
+}
+
+.entry .logo--preview{
+    width: 75px;
+    max-height: 90px;
+}
+
+.entry .logo--preview:hover{
+    cursor: pointer;
+}

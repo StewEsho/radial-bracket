@@ -1,6 +1,5 @@
 import React from 'react';
 import TeamEntry from './team-entry/TeamEntry.js'
-import './seeding.css';
 
 class Seeding extends React.Component {
 

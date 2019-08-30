@@ -1,3 +1,4 @@
+#
 ##############
 # REACT JS
 ##############
@@ -163,3 +164,9 @@ dmypy.json
 # SQL LITE
 *.sqlite3
 *.db
+
+.sass-cache/
+*/.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map

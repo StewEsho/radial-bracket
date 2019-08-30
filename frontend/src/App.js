@@ -1,7 +1,6 @@
 import React from 'react';
 import Seeding from './components/seeding/seeding.js';
-import './App.css';
-import './components/seeding/team-entry/TeamEntry.css';
+import './sass/style.scss';
 import imageIcon from './icons/round-add_photo_alternate-24px.svg';
 
 class App extends React.Component {

@@ -1,0 +1,20 @@
+.App {
+    text-align: center;
+    background-color: rgb(149, 161, 160);
+  }
+  
+  .row {
+    width: 100%;
+    display: flex;
+  }
+  
+  .col-6 {
+    width: 49%;
+    margin: 0% 0.5% 0% 0.5%;
+    background: rgb(184, 197, 196);
+    min-height: 100vh;
+  }
+  
+  .button:hover{
+    cursor:pointer;
+  }
