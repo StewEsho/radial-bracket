@@ -1,5 +1,4 @@
 import React from 'react';
-import './TeamEntry.css';
 
 class TeamEntry extends React.Component{
     constructor(props){
@@ -17,8 +16,8 @@ class TeamEntry extends React.Component{
                     <label for='teamcolor'>Team Color:           
                         <input name='teamcolor' type='color' value={this.props.team.color} onChange={(e) => this.props.editTeam.editColor(e.target.value, this.props.team.id)} />
                     </label>
-                    <label for='seed'>Seed: 
-                        <input name='seed' type='number' min='1' step='1' value={this.props.team.seed} onChange={(e) => this.props.editTeam.editSeed(e.target.value, this.props.team.id)} />
+                    <label for='seed'>Seed: {this.props.team.seed} 
+                        {/* <input name='seed' type='number' min='1' step='1' value={this.props.team.seed} onChange={(e) => this.props.editTeam.editSeed(e.target.value, this.props.team.id)} /> */}
                     </label>
                     <div className="button delete" onClick={(e) => this.props.removeTeam(this.props.team.id)}>
                         X

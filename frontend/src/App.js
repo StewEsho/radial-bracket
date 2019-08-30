@@ -1,27 +1,14 @@
 import React from 'react';
 import Seeding from './components/seeding/seeding.js';
 import './App.css';
+import './components/seeding/team-entry/TeamEntry.css';
 import imageIcon from './icons/round-add_photo_alternate-24px.svg';
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      teams: [{
-        name: 'team 1',
-        color: '#00ff00',
-        logo: imageIcon,
-        file: null,
-        seed: 1,
-        id: 0,
-      }, {
-        name: 'team 2',
-        color: '#FF5588',
-        logo: imageIcon,
-        file: null,
-        seed: 2,
-        id: 1,
-      }],
+      teams: [],
       lastTeamID: 1,
     };
     
@@ -32,7 +19,7 @@ class App extends React.Component {
       editSeed: this.editSeed
     }
 
-    this.defaultColors = ['#ff9ff3', '#feca57', '#54a0ff', '#48dbfb', '#d63031', '#1dd1a1','#009432', '#00d2d3' ,'#c8d6e5', '#222f3e', '#0a3d62', '#b71540','#6c5ce7', '#ff6b6b'];
+    this.defaultColors = ['#E91E63', '#FF9800', '#FFEB3B', '#CDDC39', '#4CAF50', '#2196F3', '#9C27B0', '#607D8B']
   }
 
   addTeam = (team) => {
@@ -103,11 +90,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="row">
-          <div className="col-6" style={{ backgroundColor: 'green' }}>
+          <div className="col-6">
             <Seeding teams={this.state.teams} 
               editTeam={this.editTeam} addTeam={this.addTeam} removeTeam={this.removeTeamByID}/>
           </div>
-          <div className="col-6" style={{ backgroundColor: 'blue' }}>
+          <div className="col-6">
 
           </div>
         </div>
