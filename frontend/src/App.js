@@ -11,6 +11,7 @@ class App extends React.Component {
       lastTeamID: 1,
     };
     
+    // suite of functions used to edit attributes of a team (to be passed to child components)
     this.editTeam = {
       editName: (newName, id) => {
         let teams = [...this.state.teams];
@@ -59,7 +60,7 @@ class App extends React.Component {
   addTeam = (team) => {
     team['name'] = team['name'] || '';
     team['color'] = team['color'] || this.defaultColors[this.state.teams.length % this.defaultColors.length];
-    team['logo'] = team['logo'] || './icons/round-add_photo_alternate-24px.svg';
+    team['logo'] = team['logo'] || imageIcon;
     team.seed = team.seed || this.state.teams.length + 1;
     team.id = ++this.state.lastTeamID;
     let teams = [...this.state.teams];
