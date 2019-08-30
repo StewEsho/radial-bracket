@@ -10,7 +10,7 @@ class Seeding extends React.Component {
 
     render(){
         return (
-            <div className='seeding'>
+            <ul className='seeding'>
 
                 <button onClick={() => this.props.addTeam({
                     name: '',
@@ -20,7 +20,7 @@ class Seeding extends React.Component {
                 {this.props.teams.map(team => 
                     <TeamEntry editTeam={this.props.editTeam} team={team} key={team.index} removeTeam={this.props.removeTeam}/> 
                 )}
-            </div>
+            </ul>
         );
     }
 }

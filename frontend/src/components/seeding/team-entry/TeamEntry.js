@@ -8,15 +8,15 @@ class TeamEntry extends React.Component{
 
     render(){
         return(
-            <div className='entry'>
+            <li className='entry'>
                 <div className='left-side'>
-                    <label for='name'>Name: 
+                    <label htmlFor='name'>Name: 
                         <input name='name' type='text' value={this.props.team.name} onChange={(e) => this.props.editTeam.editName(e.target.value, this.props.team.id)} />
                     </label>
-                    <label for='teamcolor'>Team Color:           
+                    <label htmlFor='teamcolor'>Team Color:           
                         <input name='teamcolor' type='color' value={this.props.team.color} onChange={(e) => this.props.editTeam.editColor(e.target.value, this.props.team.id)} />
                     </label>
-                    <label for='seed'>Seed: {this.props.team.seed} 
+                    <label htmlFor='seed'>Seed: {this.props.team.seed} 
                         {/* <input name='seed' type='number' min='1' step='1' value={this.props.team.seed} onChange={(e) => this.props.editTeam.editSeed(e.target.value, this.props.team.id)} /> */}
                     </label>
                     <div className="button delete" onClick={(e) => this.props.removeTeam(this.props.team.id)}>
@@ -29,7 +29,7 @@ class TeamEntry extends React.Component{
                         <img className='logo--preview' src={this.props.team.logo} />
                     </label>
                 </div>
-            </div>
+            </li>
         )
     }
 }
