@@ -19,7 +19,7 @@ class Seeding extends React.Component {
                         <TeamEntry editTeam={this.props.func.editTeam} team={team} key={team.id} removeTeam={this.props.func.removeTeam}/> 
                     )}
                 </ul>
-                
+
                 <button onClick={this.props.toggleStage}>Done</button>
             </div>
         );
