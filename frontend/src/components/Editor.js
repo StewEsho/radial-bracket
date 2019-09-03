@@ -6,9 +6,9 @@ function Editor(props){
     const isSeeding = props.isSeeding;
 
     if (isSeeding) {
-        return <Seeding teams={props.teams} toggleStage={props.toggleStage} func={props.seedingFunctions}  />
+        return <Seeding teams={props.bracket.teams} toggleStage={props.toggleStage} func={props.seedingFunctions}  />
     } else {
-        return <Matchups teams={props.teams} toggleStage={props.toggleStage}/>
+        return <Matchups teams={props.bracket.teams} toggleStage={props.toggleStage}/>
     } 
 }
 

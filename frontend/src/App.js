@@ -1,5 +1,6 @@
 import React from 'react';
 import Editor from './components/Editor.js';
+import Preview from './components/Preview.js';
 import './sass/style.scss';
 import imageIcon from './icons/round-add_photo_alternate-24px.svg';
 
@@ -29,7 +30,12 @@ class App extends React.Component {
       this.setState(oldState);
     };
 
-    this.updateTeams = (teams) => {
+    this.updateTeams = (teams) => { // TODO: replace with updateBracket
+      //ensure teams are seeded correctly.
+      for (let i = 0; i < teams.length; i++){
+        teams[i].seed = i + 1;
+      }
+
       var stateCopy = this.state;
       stateCopy.bracket.teams = [...teams];
       this.setState(stateCopy);
@@ -113,9 +119,7 @@ class App extends React.Component {
       // iterates through rounds backwards (r === 3 <--> first round)
       // this makes seeding calculations easier
       for (let r = numRounds; r > 0; r--) {
-        var round = {
-          matches: []
-        };
+        var round = [];
 
         for (let m = 0; m < 2 ** (r - 1); m++) {
           var matchup = { 
@@ -130,7 +134,7 @@ class App extends React.Component {
             matchup.team1 = "PENDING";
             matchup.team2 = "PENDING";
           }
-          round.matches.push(matchup);
+          round.push(matchup);
         }
 
         rounds.push(round);
@@ -149,14 +153,16 @@ class App extends React.Component {
         <div className="row">
           <div className="col-6">
             <Editor 
-              teams={this.state.bracket.teams} 
+              bracket={this.state.bracket} 
               seedingFunctions={ {editTeam: this.editTeam, addTeam: this.addTeam, removeTeam: this.removeTeamByID} } 
               toggleStage={this.toggleStage} 
               isSeeding={this.state.isSeeding}
             />
           </div>
           <div className="col-6">
-
+            <Preview
+              bracket={this.state.bracket}
+            />
           </div>
         </div>
       </div>
