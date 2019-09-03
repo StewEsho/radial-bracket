@@ -24,7 +24,7 @@ class TeamEntry extends React.Component{
                 <div className='right-side'>
                     <label>
                         <input type='file' className='input--logo' accept="image/png, image/jpeg, image/jpg, image/svg+xml" onChange={(e) => this.props.editTeam.editLogo(e, this.props.team.id)} />
-                        <img className='logo--preview' src={this.props.team.logo} />
+                        <img className='logo--preview' src={this.props.team.logo} alt="logo preview" />
                     </label>
                     <div className="button delete" onClick={(e) => this.props.removeTeam(this.props.team.id)}>
                         X
