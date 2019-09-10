@@ -1,5 +1,6 @@
 import React from 'react';
-import paper, { Path, Point, Shape, Size } from 'paper';
+import paper from 'paper';
+import { drawCircle } from '../utils/paper-utils.js';
 
 class Preview extends React.Component {
     constructor(props) {
@@ -8,27 +9,9 @@ class Preview extends React.Component {
         this.renderBracket = () => {
             paper.setup(this.refs.bracket);
 
-            var myCircle = new Shape.Circle({
-                center: paper.view.center,
-                fillColor: this.props.color,
-                strokeColor: "black",
-            });
-
-            var paddingPx = 10;
-            var newW = Math.max(paper.view.size.width - paddingPx, 0);
-            var newH = Math.max(paper.view.size.height - paddingPx, 0);
-            var size = new Size(newW, newH);
-            //TODO: add helper function for subtracting sizes
-            myCircle.size = size;
-
-            paper.view.onResize = function() {
-                myCircle.position = paper.view.center;
-
-                var newW = Math.max(paper.view.size.width - paddingPx, 0);
-                var newH = Math.max(paper.view.size.height - paddingPx, 0);
-                var size = new Size(newW, newH);
-                myCircle.size = size;
-            };
+            console.log(this.props);
+            drawCircle(this.props.color, 1.0);
+            drawCircle("green", 0.5);
 
             paper.view.draw();
         }
