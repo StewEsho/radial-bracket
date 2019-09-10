@@ -14,7 +14,8 @@ class App extends React.Component {
         rounds: []
       },
       lastTeamID: 0,
-      isSeeding: true
+      isSeeding: true,
+      color: "#000"
     };
 
     this.defaultColors = ['#E91E63', '#FF9800', '#FFEB3B', '#CDDC39', '#4CAF50', '#2196F3', '#9C27B0', '#607D8B'];
@@ -160,8 +161,14 @@ class App extends React.Component {
             />
           </div>
           <div className="col-6">
+            <input type="color" onChange={(e) => {
+              this.setState({
+                color: e.target.value
+              });
+            }} />
             <Preview
               bracket={this.state.bracket}
+              color={this.state.color}
             />
           </div>
         </div>

@@ -4,26 +4,37 @@ import paper, { Path, Point } from 'paper';
 class Preview extends React.Component {
     constructor(props) {
         super(props);
+
+        this.renderBracket = () => {
+            paper.setup(this.refs.canvas);
+            console.log(paper);
+    
+            var path = new Path();
+            path.strokeColor = this.props.color;
+    
+            var start = new Point(100, 100);
+    
+            path.moveTo(start);
+    
+            path.lineTo(start.add([200, -50]));
+    
+            paper.view.draw();
+        }
     }
 
     // Configure paper.js to draw bracket
     componentDidMount() {
-        paper.setup('canvas');
-
-        // Paper's drawing code
-        var path = new Path();
-        path.strokeColor = 'black';
-        var start = new Point(100, 100);
-        path.moveTo(start);
-        path.lineTo(start + [100, -50]);
-
-        paper.view.draw();
+        this.renderBracket();
     }
 
     render() {
+        
+        this.renderBracket();
+        console.log(this);
+
         return (
             <div className="Preview">
-                <canvas id="canvas"></canvas>
+                <canvas ref="canvas"></canvas>
             </div>
         );
     }
